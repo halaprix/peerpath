@@ -53,6 +53,12 @@ Homelab/self-hosted operators running wg-easy in Docker or Podman who need relia
 - No storage of private VPN keys or secrets.
 - No enterprise VPN management in the first version.
 
+## Safety model
+
+PeerPath v0.1 is read-only. It reports evidence and risk-labeled next checks; it does not mutate routes, firewall rules, Docker networks, or WireGuard state.
+
+Committed fixtures are synthetic. Local reports may include private route CIDRs because those addresses are diagnostic evidence; do not publish a report until you have reviewed it for hostnames, paths, comments, and secrets.
+
 ## Status
 
 v0.1.0-alpha.0 — scaffold/spec only.
