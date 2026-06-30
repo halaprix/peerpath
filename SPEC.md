@@ -14,7 +14,7 @@ As a homelab operator running wg-easy in Docker, I want a safe diagnostic report
 
 ## Feature list
 
-### v0.1.0-alpha.1
+### v0.1.0-alpha.1 — implemented
 
 - Python CLI skeleton: `peerpath doctor`, `peerpath fixture`, `peerpath explain`.
 - Fixture loader for CI and demos.
@@ -30,13 +30,15 @@ As a homelab operator running wg-easy in Docker, I want a safe diagnostic report
   - host missing route to peer CIDR,
   - forwarding disabled or blocked,
   - peer `AllowedIPs` mismatch.
+- Markdown and JSON report exporters.
+- Redaction pass for local paths and key material.
+- Example broken fixtures and generated host-missing-route report.
 
 ### v0.1.0-alpha.2
 
 - Connectivity probe planner with dry-run output.
-- Markdown and JSON report exporters.
-- Redaction pass for hostnames, usernames, private comments, and key material.
-- Example broken and fixed fixtures.
+- Path matrix population for host/container/peer paths.
+- Example fixed fixtures.
 
 ### v0.2.0-alpha.1
 
@@ -96,6 +98,6 @@ Finding
 ## Milestones
 
 - v0.1.0-alpha.0 — repo scaffold/spec.
-- v0.1.0-alpha.1 — CLI skeleton plus fixture parser tests.
-- v0.1.0-alpha.2 — first useful Markdown report.
+- v0.1.0-alpha.1 — fixture-driven CLI doctor, parsers, rules, reports, redaction.
+- v0.1.0-alpha.2 — dry-run probe planning and path matrix population.
 - v0.2.0-alpha.1 — real host/container collection path.

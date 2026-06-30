@@ -46,6 +46,27 @@ Homelab/self-hosted operators running wg-easy in Docker or Podman who need relia
 - Ranked remediation snippets with risk labels.
 - Markdown/JSON export for support threads and GitHub issues.
 
+## Quickstart
+
+```bash
+python -m pip install -e .
+python -m peerpath fixture list --fixtures-dir tests/fixtures
+python -m peerpath doctor --fixture tests/fixtures/host-missing-route
+python -m peerpath doctor --fixture tests/fixtures/allowedips-mismatch --format json
+```
+
+Example report excerpt:
+
+```text
+### blocking: Host has no specific route to the WireGuard peer CIDR
+
+- ID: `host_missing_route_to_peer_cidr`
+- Confidence: high
+- Safe next check: Inspect the host route table for a specific route to the peer CIDR.
+```
+
+Live host/container collection is not enabled yet. v0.1 alpha only diagnoses synthetic fixtures checked into the repo.
+
 ## Non-goals
 
 - No default mutation of firewall, routing, or VPN state.
@@ -61,4 +82,4 @@ Committed fixtures are synthetic. Local reports may include private route CIDRs 
 
 ## Status
 
-v0.1.0-alpha.0 — scaffold/spec only.
+v0.1.0-alpha.1 — fixture-driven CLI doctor implemented. Live host/container collection is future work.
