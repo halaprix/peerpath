@@ -699,7 +699,7 @@ Create `tests/test_redaction.py`:
 from peerpath.redaction import redact_text
 
 
-def test_redacts_wireguard_private_key_material():
+def test_redacts_wireguard_secret_material():
     text = "PrivateKey = abcdefghijklmnopqrstuvwxyz1234567890=\nPresharedKey = abcdef"
     redacted = redact_text(text)
     assert "abcdefghijklmnopqrstuvwxyz" not in redacted

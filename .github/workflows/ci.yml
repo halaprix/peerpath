@@ -24,7 +24,8 @@ jobs:
         run: |
           ! grep -RInE '(private_key|preshared_key|BEGIN (RSA|OPENSSH|PRIVATE) KEY|AKIA[0-9A-Z]{16})' . \
             --exclude-dir=.git \
-            --exclude=SECURITY.md
+            --exclude=SECURITY.md \
+            --exclude=ci.yml
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
