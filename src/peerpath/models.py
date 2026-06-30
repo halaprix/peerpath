@@ -2,6 +2,43 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Literal
+
+Severity = Literal["info", "warning", "blocking", "unsafe"]
+Confidence = Literal["low", "medium", "high"]
+
+
+@dataclass(frozen=True)
+class RemediationOption:
+    title: str
+    detail: str
+    risk_label: str
+
+
+@dataclass(frozen=True)
+class Finding:
+    id: str
+    title: str
+    severity: Severity
+    confidence: Confidence
+    evidence: tuple[str, ...]
+    explanation: str
+    safe_next_check: str
+    remediation_options: tuple[RemediationOption, ...]
+
+
+@dataclass(frozen=True)
+class PathCheck:
+    name: str
+    observed_state: str
+    likely_causes: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class DiagnosticReport:
+    fixture_name: str
+    findings: tuple[Finding, ...]
+    path_matrix: tuple[PathCheck, ...] = ()
 
 
 @dataclass(frozen=True)
