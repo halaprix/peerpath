@@ -7,7 +7,9 @@ from pathlib import Path
 from typing import NoReturn
 
 from peerpath import __version__
-from peerpath.fixtures import list_fixtures
+from peerpath.fixtures import list_fixtures, load_fixture
+from peerpath.report import render_json, render_markdown
+from peerpath.rules.reachability import analyze_fixture
 
 
 class PeerPathParser(argparse.ArgumentParser):
@@ -96,12 +98,12 @@ def main(argv: Sequence[str] | None = None) -> int:
                 file=sys.stderr,
             )
             return 2
-        print(
-            "fixture-backed diagnostics are not implemented yet; "
-            "this command surface is reserved for the next task.",
-            file=sys.stderr,
-        )
-        return 2
+        report = analyze_fixture(load_fixture(Path(args.fixture)))
+        if args.format == "json":
+            print(render_json(report), end="")
+        else:
+            print(render_markdown(report))
+        return 0
 
     if args.command == "fixture":
         fixtures = list_fixtures(Path(args.fixtures_dir))
