@@ -5,6 +5,82 @@ from pathlib import Path
 
 
 @dataclass(frozen=True)
+class DockerService:
+    name: str
+    service: str
+    state: str
+
+
+@dataclass(frozen=True)
+class DockerState:
+    container_name: str
+    network_mode: str
+    container_ip: str
+    gateway: str
+    prefix_len: int | None
+    published_ports: tuple[str, ...]
+    capabilities: tuple[str, ...]
+
+
+@dataclass(frozen=True)
+class WireGuardPeer:
+    public_key: str
+    allowed_ips: tuple[str, ...]
+    endpoint: str = ""
+
+
+@dataclass(frozen=True)
+class WireGuardState:
+    interface: str = ""
+    listen_port: int | None = None
+    interface_address: str = ""
+    peers: tuple[WireGuardPeer, ...] = ()
+
+
+@dataclass(frozen=True)
+class RouteEntry:
+    destination: str
+    via: str = ""
+    dev: str = ""
+
+
+@dataclass(frozen=True)
+class RouteTable:
+    routes: tuple[RouteEntry, ...]
+
+    def has_route_for(self, cidr: str) -> bool:
+        from ipaddress import ip_network
+
+        target = ip_network(cidr, strict=False)
+        for route in self.routes:
+            try:
+                network = ip_network(route.destination, strict=False)
+            except ValueError:
+                continue
+            if target.version != network.version:
+                continue
+            if network.prefixlen == 0:
+                continue
+            if target.subnet_of(network) or target == network:
+                return True
+        return False
+
+
+@dataclass(frozen=True)
+class ForwardingState:
+    ipv4_forwarding: bool | None = None
+    ipv6_forwarding: bool | None = None
+
+
+@dataclass(frozen=True)
+class FirewallSummary:
+    backend: str = "unknown"
+    forward_policy: str = "unknown"
+    masquerade_enabled: bool = False
+    evidence: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
 class FixtureTarget:
     peer_cidr: str
     peer_ip: str
