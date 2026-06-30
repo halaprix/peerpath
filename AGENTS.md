@@ -6,7 +6,13 @@ PeerPath is a public software/app bet from the 100 Days, 100 Apps lab.
 
 Build a safe, read-only diagnostic CLI for Dockerized WireGuard/wg-easy reachability problems.
 
-## Rules
+## Implementation plan
+
+**Read first:** `.resources/plan/implementation-plan.md`
+
+Execute the plan task-by-task in Beads order. Each plan Task maps to one bead, one implementation commit, one push, and one bead close.
+
+## Hard constraints
 
 - Public-safe only: do not commit secrets, private keys, VPN configs, private hostnames, private IP inventories, screenshots with personal data, or local machine paths.
 - Do not add commands that mutate firewall, routing, Docker, or VPN state without an explicit design review.
@@ -14,10 +20,22 @@ Build a safe, read-only diagnostic CLI for Dockerized WireGuard/wg-easy reachabi
 - Prefer simple Python modules and deterministic parser tests over clever networking automation.
 - Conventional Commits only.
 - Use Beads (`bd`) for task tracking; do not use markdown task lists as a tracker.
+- TDD: write failing tests before implementation for every parser, rule, report, or CLI behavior.
+
+## Key gotchas
+
+- v0.1 alpha is fixture-first. Live host/container collection is future work unless a later bead explicitly scopes it.
+- Private RFC1918 routes may be valid local diagnostic evidence, but committed fixtures must be synthetic and public-safe.
+- No `sudo`, `iptables -A`, `nft add`, `ip route add`, Docker network mutation, or WireGuard state mutation in v0.1.
+- Reports must explain evidence and risk before suggesting any command.
 
 ## Quality bar
 
-Before claiming work is complete, run the available validation commands and include real output in the handoff.
+Before claiming work is complete, run the validation commands from the current bead/plan task and include real output in the handoff.
+
+## Halt condition
+
+After finishing the v0.1 alpha acceptance bead, halt for human review before adding live collection, container exec, remediation snippets, or support-thread automation.
 
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:7510c1e2 -->
 ## Beads Issue Tracker
