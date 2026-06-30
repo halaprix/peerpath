@@ -1,3 +1,4 @@
 {"id":"int-bbab3127","kind":"field_change","created_at":"2026-06-30T12:18:17.274249471Z","actor":"halaprix","issue_id":"peer-85m","extra":{"field":"status","new_value":"blocked","old_value":"open"}}
 {"id":"int-c08c66dc","kind":"field_change","created_at":"2026-06-30T12:18:18.619155616Z","actor":"halaprix","issue_id":"peer-4zg","extra":{"field":"priority","new_value":"1","old_value":"2"}}
 {"id":"int-aeab9a64","kind":"field_change","created_at":"2026-06-30T13:40:01.77452138Z","actor":"halaprix","issue_id":"peer-85m.1","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Implemented CLI baseline in this commit"}}
+{"id":"int-a60c1686","kind":"field_change","created_at":"2026-06-30T13:43:41.209686895Z","actor":"halaprix","issue_id":"peer-4zg","extra":{"field":"status","new_value":"closed","old_value":"in_progress","reason":"Implemented fixture schema and synthetic fixtures in this commit"}}

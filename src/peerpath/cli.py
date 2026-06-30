@@ -3,9 +3,11 @@ from __future__ import annotations
 import argparse
 import sys
 from collections.abc import Sequence
+from pathlib import Path
 from typing import NoReturn
 
 from peerpath import __version__
+from peerpath.fixtures import list_fixtures
 
 
 class PeerPathParser(argparse.ArgumentParser):
@@ -102,7 +104,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 2
 
     if args.command == "fixture":
-        print(f"fixture {args.action}: {args.fixtures_dir}")
+        fixtures = list_fixtures(Path(args.fixtures_dir))
+        if not fixtures:
+            print(f"no fixtures found in {args.fixtures_dir}")
+            return 0
+        for fixture in fixtures:
+            print(f"{fixture.name}\t{fixture.description}")
         return 0
 
     if args.command == "explain":

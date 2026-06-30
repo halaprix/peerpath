@@ -1,0 +1,10 @@
+{
+  "name": "allowedips-mismatch",
+  "description": "Peer AllowedIPs only covers one host when the intended route is the peer CIDR",
+  "target": {
+    "peer_cidr": "10.44.0.0/24",
+    "peer_ip": "10.44.0.2",
+    "wg_interface": "wg0",
+    "container_name": "peerpath-wg-easy"
+  }
+}

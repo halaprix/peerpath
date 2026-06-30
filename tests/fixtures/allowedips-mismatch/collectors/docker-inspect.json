@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "/peerpath-wg-easy",
+    "Id": "0123456789ab",
+    "HostConfig": {
+      "NetworkMode": "peerpath_net",
+      "CapAdd": ["NET_ADMIN", "SYS_MODULE"],
+      "PortBindings": {
+        "51820/udp": [{"HostIp": "0.0.0.0", "HostPort": "51820"}]
+      }
+    },
+    "NetworkSettings": {
+      "Networks": {
+        "peerpath_net": {
+          "IPAddress": "172.28.0.2",
+          "Gateway": "172.28.0.1",
+          "IPPrefixLen": 16
+        }
+      }
+    }
+  }
+]

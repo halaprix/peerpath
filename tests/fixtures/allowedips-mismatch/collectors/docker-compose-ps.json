@@ -1,0 +1,8 @@
+[
+  {
+    "Name": "peerpath-wg-easy",
+    "Service": "wg-easy",
+    "State": "running",
+    "Publishers": [{"URL": "0.0.0.0", "TargetPort": 51820, "PublishedPort": 51820, "Protocol": "udp"}]
+  }
+]

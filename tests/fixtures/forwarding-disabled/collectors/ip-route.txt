@@ -1,0 +1,4 @@
+default via 192.0.2.1 dev eth0 proto dhcp src 192.0.2.10
+10.44.0.0/24 via 172.28.0.2 dev br-peerpath
+172.28.0.0/16 dev br-peerpath proto kernel scope link src 172.28.0.1
+192.0.2.0/24 dev eth0 proto kernel scope link src 192.0.2.10
